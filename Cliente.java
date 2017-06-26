@@ -6,7 +6,7 @@ public class Cliente {
 	private String nome;
 	private String cpf;
 	private String email;
-	private String conta;
+	private Integer conta;
 	private String senha;
 	
 	public Integer getId() {
@@ -33,10 +33,10 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getConta(){
+	public Integer getConta(){
 		return conta;
 	}
-	public void setConta(String conta) {
+	public void setConta(Integer conta) {
 		this.conta = conta;
 	}
 	public String getSenha() {
