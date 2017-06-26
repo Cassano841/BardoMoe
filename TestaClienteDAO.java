@@ -1,5 +1,6 @@
 package br.com.ifrsrestinga.progii.testes;
 
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.ifrsrestinga.progii.entidades.Cliente;
@@ -30,14 +31,14 @@ public class TestaClienteDAO {
 			atualizarCliente();
 			break;
 		case 3:
-			//deletarCliente();
+			deletarCliente();
 			break;
 		case 4:
-			//testeListarTodos();
-			//break;
+			testeListarTodos();
+			break;
 		case 5:
-			//testeProcurarPorId();
-			//break;
+			testeProcurarPorId();
+			break;
 		case 6:
 			//testeProcurarPorNome();
 			//break;
@@ -49,12 +50,11 @@ public class TestaClienteDAO {
 			break;
 		}
 	}
-
+		// MÉTODO SALVAR CLIENTE
 	private static void salvarCliente() {
 		Scanner n = new Scanner(System.in);
 		Cliente cliente  = new Cliente();
-		
-		//cliente.setId(1);
+
 		System.out.println("Digite o nome do cliente:");
 		cliente.setNome(n.next());
 		System.out.println("Digite o CPF do cliente:");
@@ -62,19 +62,18 @@ public class TestaClienteDAO {
 		System.out.println("Digite o email do cliente:");
 		cliente.setEmail(n.next());
 		System.out.println("Digite a conta do cliente:");
-		cliente.setConta(n.next());
+		cliente.setConta(n.nextInt());
 		System.out.println("Digite a senha do cliente");
 		cliente.setSenha(n.next());
 		
 		ClienteDAO clienteDao = new ClienteDAO();
 		clienteDao.salvarCliente(cliente);
 	}
-	
+		// MÉTODO ATUALIZAR INFORMAÇÕES DO CLIENTE
 	private static void atualizarCliente() {
 		Scanner n = new Scanner(System.in);
 		Cliente cliente = new Cliente();
-				
-		cliente.setId(1);
+		
 		System.out.println("Digite o novo nome do cliente:");
 		cliente.setNome(n.next());
 		System.out.println("Digite o novo CPF do cliente:");
@@ -82,11 +81,44 @@ public class TestaClienteDAO {
 		System.out.println("Digite o novo email do cliente:");
 		cliente.setEmail(n.next());
 		System.out.println("Digite a nova conta do cliente:");
-		cliente.setConta(n.next());
+		cliente.setConta(n.nextInt());
 		System.out.println("Digite a nova senha do cliente");
 		cliente.setSenha(n.next());
 		
 		ClienteDAO clienteDao = new ClienteDAO();
 		clienteDao.atualizarCliente(cliente);
+	}
+		// MÉTODO DELETAR CLIENTE
+	private static void deletarCliente() {
+		Scanner n = new Scanner(System.in);
+		Cliente cliente = new Cliente();
+		
+		System.out.println("Digite o id do cliente para remover:");
+		cliente.setId(n.nextInt());
+				
+		ClienteDAO clienteDao = new ClienteDAO();
+		clienteDao.deletarCliente(cliente);
+	}
+		// MÉTODO LISTAR TODOS OS CLIENTES DO BANCO
+	private static void testeListarTodos() {
+		ClienteDAO clienteDao = new ClienteDAO();
+		List<Cliente> listaDeClientes =  clienteDao.listarTodos();
+		
+		for (Cliente u : listaDeClientes){
+			System.out.println(u.getId() + " | " +  u.getNome() + " | " + u.getCPF() + " | " + u.getSenha());
+		}
+	}
+	private static void testeProcurarPorId() {
+		Scanner n = new Scanner(System.in);
+		ClienteDAO clienteDao = new ClienteDAO();
+		//System.out.println(usuDao.procurarPorId(4));
+		System.out.println("Digite o id do cliente para procurar:");
+		
+		Cliente retorno_cliente = clienteDao.procurarPorId(n.nextInt());
+		
+		if (retorno_cliente != null)
+			System.out.println("Nome: " + retorno_cliente.getNome() + " | CPF:" + retorno_cliente.getCPF() + " | E-mail:" + retorno_cliente.getEmail());
+		else
+			System.out.println("ID nao localizado");
 	}
 }
