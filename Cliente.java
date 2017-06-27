@@ -3,7 +3,7 @@ package br.com.ifrsrestinga.progii.entidades;
 public class Cliente {
 	
 	private Integer id;
-	private String nome;
+	
 	private String cpf;
 	private String email;
 	private Integer conta;
