@@ -6,9 +6,15 @@ import java.util.Scanner;
 import br.com.ifrsrestinga.progii.entidades.Cliente;
 import br.com.ifrsrestinga.progii.jdbc.ClienteDAO;
 
-public class TestaClienteDAO {
+public class TestaClienteDAO{
+	
+	public TestaClienteDAO(){
+
+/*{
 
 	public static void main(String[] args) {
+	
+	*/
 		Scanner n = new Scanner(System.in);
 		int op = 0;
 		System.out.println("Informe qual ação deseja realizar:");
@@ -74,16 +80,17 @@ public class TestaClienteDAO {
 		Scanner n = new Scanner(System.in);
 		Cliente cliente = new Cliente();
 		
+		System.out.println("Digite o CPF do cliente:");
+		cliente.setCPF(n.nextLine());
 		System.out.println("Digite o novo nome do cliente:");
-		cliente.setNome(n.next());
-		System.out.println("Digite o novo CPF do cliente:");
-		cliente.setCPF(n.next());
-		System.out.println("Digite o novo email do cliente:");
-		cliente.setEmail(n.next());
-		System.out.println("Digite a nova conta do cliente:");
-		cliente.setConta(n.nextInt());
-		System.out.println("Digite a nova senha do cliente");
-		cliente.setSenha(n.next());
+		cliente.setNome(n.nextLine());
+		
+		//System.out.println("Digite o novo email do cliente:");
+		//cliente.setEmail(n.next());
+		//System.out.println("Digite a nova conta do cliente:");
+		//cliente.setConta(n.nextInt());
+		//System.out.println("Digite a nova senha do cliente");
+		//cliente.setSenha(n.next());
 		
 		ClienteDAO clienteDao = new ClienteDAO();
 		clienteDao.atualizarCliente(cliente);
