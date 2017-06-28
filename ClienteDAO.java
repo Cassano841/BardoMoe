@@ -48,7 +48,7 @@ public class ClienteDAO {
 		}
 
 		public void atualizarCliente(Cliente cliente) {
-			String sql = "update cliente set nome=('?') where cpf=?";
+			String sql = "update cliente set nome=(?) where cpf=?";
 			
 			try{
 				//preparando PreparedStatment com o SQL
@@ -57,15 +57,17 @@ public class ClienteDAO {
 				
 				//substitindo os pontos de interrogacao com os dados
 				
+				String cpf = cliente.getCPF();
 				String nome = cliente.getNome();
-				int conta = cliente.getConta();
-				String senha = cliente.getSenha();
-				int id = cliente.getId();
+				//int conta = cliente.getConta();
+				//String senha = cliente.getSenha();
+				//int id = cliente.getId();
 				
-				prepara.setString(1,nome); 
-				prepara.setInt(2,conta); 
-				prepara.setString(3,senha); 
-				prepara.setInt(4,id); //atualizando pelo id que eh inteiro
+				prepara.setString(1,nome);
+				prepara.setString(2,cpf);
+				//prepara.setInt(2,conta); 
+				//prepara.setString(3,senha); 
+				//prepara.setInt(4,id); //atualizando pelo id que eh inteiro
 				
 				//executando no banco de dados o comando sql
 				prepara.execute();
