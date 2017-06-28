@@ -7,7 +7,10 @@ import br.com.ifrsrestinga.progii.jdbc.ProdutoDAO;
 
 
 public class TestaProdutoDAO {
-	public static void main(String[] args) {
+	
+	public TestaProdutoDAO(){
+	//public static void main(String[] args) {
+		
 		Scanner n = new Scanner(System.in);
 		int op = 0;
 		System.out.println("Informe qual ação deseja realizar:");
