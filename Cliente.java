@@ -8,6 +8,7 @@ public class Cliente {
 	private String email;
 	private Integer conta;
 	private String senha;
+
 	
 	public Integer getId() {
 		return id;
