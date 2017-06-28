@@ -22,5 +22,5 @@ public class Operacoes {
 	}
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
-	}
+}
 }
