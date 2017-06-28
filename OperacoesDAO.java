@@ -41,6 +41,4 @@ public class OperacoesDAO {
 			e.printStackTrace();
 	}
 }
-		}
-
-
+}
