@@ -56,7 +56,7 @@ public class TestaClienteDAO {
 		Cliente cliente  = new Cliente();
 
 		System.out.println("Digite o nome do cliente:");
-		cliente.setNome(n.next());
+		cliente.setNome(n.nextLine());
 		System.out.println("Digite o CPF do cliente:");
 		cliente.setCPF(n.next());
 		System.out.println("Digite o email do cliente:");
