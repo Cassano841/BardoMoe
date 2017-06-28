@@ -7,7 +7,8 @@ import br.com.ifrsrestinga.progii.jdbc.OperacoesDAO;
 
 public class TestaOperacoes {
 	
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
+	public TestaOperacoes(){
 			Scanner n = new Scanner(System.in);
 			int op = 0;
 			System.out.println("Informe qual operacao deseja realizar:");
@@ -22,7 +23,7 @@ public class TestaOperacoes {
 			
 			switch (op) {
 			case 1:
-				depositar();
+				//depositar();
 				break;
 			case 2:
 				//atualizarProduto();
@@ -42,7 +43,7 @@ public class TestaOperacoes {
 			}
 		}
 
-		private static void depositar(int dep) {
+/*		private static void depositar(int dep) {
 			if (this.getSaldo){
 			        this.setSaldo(this.getSaldo() + v);
 			            System.out.println("Deposito realizado na conta de " + this.getDono());
@@ -52,6 +53,6 @@ public class TestaOperacoes {
 			    }
 			
 
-	}
+	}*/
 
 }
