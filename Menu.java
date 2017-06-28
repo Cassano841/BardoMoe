@@ -1,26 +1,32 @@
+package br.com.ifrsrestinga.progii.entidades;
 import java.util.Scanner;
+
+import br.com.ifrsrestinga.progii.testes.TestaClienteDAO;
+import br.com.ifrsrestinga.progii.testes.TestaProdutoDAO;
 
 public class Menu {
 
 	public static void main(String[] args) {
 		Scanner n = new Scanner(System.in);
 		int op = 0;
-		System.out.println("Escolha a funÁ„o que deseja realizar:");
+		System.out.println("Escolha a fun√ß√£o que deseja realizar:");
 		System.out.println("--------------------------");
 		System.out.println("|1 - Clientes             |");
 		System.out.println("|2 - Produtos             |");
 		System.out.println("|3 - Relatorios           |");
+		System.out.println("|4 - Vendas               |");
 		System.out.println("|4 - Sair                 |");
-		System.out.println("--------------------------");
+		System.out.println("---------------------------");
 		op = n.nextInt();
 		
 		switch (op) {
 		case 1:
-			System.out.println("Chama TestaCLiente"); // ser· que È possivel?
+			System.out.println("Chama TestaCLiente"); // ser√° que √© possivel?
+			TestaClienteDAO cliente  = new TestaClienteDAO();
 			break;
 		case 2:
-			System.out.println("Chama TestaProduto"); // ser· que È possivel?
-			//acessoProdutos();
+			System.out.println("Chama TestaProduto"); // ser√° que √© possivel?
+			TestaProdutoDAO produto = new TestaProdutoDAO();
 			break;
 		case 3:
 		//	acessoRelatorios();
@@ -29,16 +35,9 @@ public class Menu {
 		//	sair();
 			break;
 		default:
-			System.out.println("Op√ß√£o inv√°lida!");
+			System.out.println("Opcao invalida!");
 			break;
 		}
 	}
 		
-	}
-	
-
-			
-
-		
-	
-
+}
