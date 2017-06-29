@@ -7,18 +7,17 @@ import br.com.ifrsrestinga.progii.jdbc.OperacoesDAO;
 
 public class TestaOperacoes {
 	
-	//public static void main(String[] args) {
 	public TestaOperacoes(){
 			Scanner n = new Scanner(System.in);
 			int op = 0;
 			System.out.println("Informe qual operacao deseja realizar:");
-			System.out.println("--------------------------");
-			System.out.println("|1 - Deposito            |");
-			System.out.println("|2 - Transferencia       |");
-			System.out.println("|3 - Saldo               |");
-			System.out.println("|4 - Voltar              |");
-			System.out.println("|5 - Sair                |");
-			System.out.println("--------------------------");
+			System.out.println("---------------------");
+			System.out.println("|1 - Deposito       |");
+			System.out.println("|2 - Transferencia  |");
+			System.out.println("|3 - Saldo          |");
+			System.out.println("|4 - Voltar         |");
+			System.out.println("|5 - Sair           |");
+			System.out.println("---------------------");
 			op = n.nextInt();
 			
 			switch (op) {
@@ -52,7 +51,6 @@ public class TestaOperacoes {
 			        }
 			    }
 			
-
 	}*/
 
 }
