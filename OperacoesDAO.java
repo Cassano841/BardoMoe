@@ -35,7 +35,7 @@ public class OperacoesDAO {
 			prepara.execute();
 			prepara.close();
 			
-			System.out.println("Operacao realizada com sucesso");
+			System.out.println("Operação realizada com sucesso");
 		}catch(SQLException e){ 
 			//se comando sql nao estiver correto ira imprimir o erro gerado
 			e.printStackTrace();
