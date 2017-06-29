@@ -80,6 +80,7 @@ public class ClienteDAO {
 				e.printStackTrace();
 			}
 		}
+		
 		public void deletarCliente (Cliente cliente){
 			//montando o sql
 			String sql = "DELETE FROM cliente WHERE id=?";
@@ -96,7 +97,7 @@ public class ClienteDAO {
 				prepara.execute();
 				prepara.close();
 
-				System.out.println("Operação realizada com sucesso, cliente");
+				System.out.println("Operação realizada com sucesso, cliente removido!");
 
 			} catch(SQLException e){ 
 				//se comando sql nao estiver correto ira imprimir o erro gerado
@@ -149,8 +150,8 @@ public class ClienteDAO {
 			
 			return listaDeUsuarios;
 		}
-		//metodos auxiliares de CRUD
-		public Cliente procurarPorId(Integer id){ //procurar pelo id
+		
+		public Cliente procurarPorId(Integer id){
 
 			//montando o sql
 			String sql = "SELECT * FROM cliente WHERE id = ?";
@@ -190,5 +191,82 @@ public class ClienteDAO {
 					}
 					return cliente;
 				}
+		
+		public Cliente procurarPorNome(String nome){
 
+			//montando o sql
+			String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
+			
+			Cliente cliente = null;
+
+			try{
+				PreparedStatement prepara = con.prepareStatement(sql);
+				prepara.setString(1,nome); //informando o id que deve ser buscado
+
+				ResultSet resultado = prepara.executeQuery(); 
+				
+				if (resultado.next()){ 
+					
+					cliente = new Cliente();
+					
+					 //colocando id buscado (resultante) para objeto usuario
+					nome = resultado.getString("nome");
+					int id = resultado.getInt("id");
+					int conta = resultado.getInt("conta");
+					String senha = resultado.getString("senha");
+
+					cliente.setId(id); 
+					cliente.setNome(nome);
+					cliente.setConta(conta);
+					cliente.setSenha(senha);
+				}
+				prepara.close();
+				System.out.println("Listando Registro do Nome: " + nome);
+
+			} catch(SQLException e){ 
+				//se comando sql nao estiver correto ira imprimir o erro gerado
+				e.printStackTrace();
+			}
+			
+			return cliente;
+		}
+		
+		public Cliente procurarPorConta(int conta){ 
+
+			//montando o sql
+			String sql = "SELECT * FROM cliente WHERE conta=?";
+			
+			Cliente cliente = null;
+
+			try{
+				PreparedStatement prepara = con.prepareStatement(sql);
+				prepara.setInt(1,conta); //informando o id que deve ser buscado
+
+				ResultSet resultado = prepara.executeQuery(); 
+				
+				if (resultado.next()){ 
+					
+					cliente = new Cliente();
+					
+					 //colocando id buscado (resultante) para objeto usuario
+					conta = resultado.getInt("conta");
+					int id = resultado.getInt("id");
+					String nome = resultado.getString("nome");
+					String senha = resultado.getString("senha");
+
+					cliente.setId(id); 
+					cliente.setNome(nome);
+					cliente.setConta(conta);
+					cliente.setSenha(senha);
+				}
+				prepara.close();
+				System.out.println("Listando Registro da Conta: " + conta);
+
+			} catch(SQLException e){ 
+				//se comando sql nao estiver correto ira imprimir o erro gerado
+				e.printStackTrace();
+			}
+			
+			return cliente;
+		}
 }
