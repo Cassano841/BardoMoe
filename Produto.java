@@ -4,7 +4,7 @@ public class Produto {
 	private int id;
 	private int codigoProduto;
 	private String nomeProduto;
-	private int precoUnitario;
+	private double precoUnitario;
 	
 	//get ID
 	public Integer getId() {
@@ -31,11 +31,11 @@ public class Produto {
 		this.nomeProduto = nomeProduto;
 	}
 	//get PRECO UNITARIO
-	public int getprecoUnitario() {
+	public double getprecoUnitario() {
 		return precoUnitario;
 	}
 	//set PRECO UNITARIO
-	public void setprecoUnitario(Integer precoUnitario) {
+	public void setprecoUnitario(double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 }
