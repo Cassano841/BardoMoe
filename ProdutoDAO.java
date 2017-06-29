@@ -2,7 +2,10 @@ package br.com.ifrsrestinga.progii.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.ifrsrestinga.progii.entidades.Cliente;
 import br.com.ifrsrestinga.progii.entidades.Produto;
@@ -21,12 +24,12 @@ public class ProdutoDAO {
 				//Integer id = produto.getId();
 				Integer codigo = produto.getcodigoProduto();
 				String nomeProduto = produto.getnomeProduto();
-				Integer precoUnitario = produto.getcodigoProduto();
+				Double precoUnitario = produto.getprecoUnitario();
 				
 				//prepara.setInt(1, id);
 				prepara.setInt(1, codigo);
 				prepara.setString(2, nomeProduto);
-				prepara.setInt(3,precoUnitario);
+				prepara.setDouble(3,precoUnitario);
 				
 				prepara.execute();
 				prepara.close();
@@ -67,5 +70,48 @@ public class ProdutoDAO {
 				//se comando sql nao estiver correto ira imprimir o erro gerado
 				e.printStackTrace();
 			}
+		}
+		
+		public List<Produto> listarTodos(){ //procurar todos nao tem parametro
+			
+			List<Produto> listaDeProdutos = new ArrayList<Produto>();
+			
+			//montando o sql
+			String sql = "SELECT * FROM produtos";
+			
+			try{
+				//preparando PreparedStatment com o SQL
+				//quem prepara eh o connection
+				PreparedStatement prepara = con.prepareStatement(sql);
+				//executando ---CONSULTA--- no banco de dados o comando sql
+				ResultSet resultado = prepara.executeQuery(); //retorna resultado da consulta da query -> tipo ResultSet
+				
+				while(resultado.next()){ //buscando valor das colunas, registro por registro
+					
+					Produto produto  = new Produto();
+
+					int id = resultado.getInt("id");
+					String nomeProduto = resultado.getString("nomeProduto");
+					Integer codigoProduto = resultado.getInt("codigo");
+					Double precoUnitario = resultado.getDouble("precoUnitario");
+					
+					produto.setId(id);
+					produto.setcodigoProduto(codigoProduto);
+					produto.setnomeProduto(nomeProduto);
+					produto.setprecoUnitario(precoUnitario);
+					
+
+					listaDeProdutos.add(produto);
+				}
+				prepara.close();
+
+				System.out.println("Listando Todos os Registros: ");
+
+			} catch(SQLException e){ 
+				//se comando sql nao estiver correto ira imprimir o erro gerado
+				e.printStackTrace();
+			}
+			
+			return listaDeProdutos;
 		}
 }
