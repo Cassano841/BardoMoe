@@ -17,7 +17,7 @@ public class OperacoesDAO {
 	
 	public void salvarOperacoes(Operacoes operacoes) {
 		//sql
-		String sql = "INSERT INTO produtos (deposito, transferencia, saldo) values (?,?,?)";
+		String sql = "INSERT INTO operacoes (deposito, transferencia, saldo) values (?,?,?)";
 		try {
 			PreparedStatement prepara = con.prepareStatement(sql);
 			//substitui os ? por valores;
