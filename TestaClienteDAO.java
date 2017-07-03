@@ -160,6 +160,6 @@ public class TestaClienteDAO{
 		if (retorno_cliente != null)
 			System.out.println("ID:" + retorno_cliente.getId() + " | Nome:" + retorno_cliente.getNome() + " | Conta:" + retorno_cliente.getConta() + " | Senha:" + retorno_cliente.getSenha());
 		else
-			System.out.println("Login nao localizado");
+			System.out.println("Conta nao localizada");
 	}
 }
