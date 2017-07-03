@@ -22,7 +22,7 @@ public class TestaOperacoes {
 			
 			switch (op) {
 			case 1:
-				//depositar();
+				depositar();
 				break;
 			case 2:
 				//atualizarProduto();
@@ -33,24 +33,18 @@ public class TestaOperacoes {
 			case 4:
 				//listarProdutos();
 				//break;
-			case 5:
-				//procurarPorId();
-				//break;
 			default:
 				System.out.println("Opção inválida!");
 				break;
 			}
 		}
 
-/*		private static void depositar(int dep) {
-			if (this.getSaldo){
-			        this.setSaldo(this.getSaldo() + v);
-			            System.out.println("Deposito realizado na conta de " + this.getDono());
-			        }else{
-			            System.out.println("Impossivel depositar em uma conta");
-			        }
-			    }
+		private static void depositar() {
+			Scanner n = new Scanner(System.in);
+			OperacoesDAO operacoes = new OperacoesDAO();
 			
-	}*/
-
+			System.out.println("Informe a conta do cliente:");
+			//operacoes.salvarOperacaoDepositar(operacoes);
+			    
+	   }		
 }
