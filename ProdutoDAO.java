@@ -34,14 +34,14 @@ public class ProdutoDAO {
 				prepara.execute();
 				prepara.close();
 				
-				System.out.println("Registro produto -salvo- com sucesso");
+				System.out.println("Produto registrado com sucesso");
 			}catch(SQLException e){ 
 				//se comando sql nao estiver correto ira imprimir o erro gerado
 				e.printStackTrace();
 		}
 	}
 		public void atualizarProduto(Produto produto) {
-			String sql = "UPDATE PRODUTOS set nomeProduto=('Batata') where id=1";
+			String sql = "UPDATE produtos set nomeProduto=(?), precoUnitario=? where codigo=?";
 			
 			try{
 				//preparando PreparedStatment com o SQL
@@ -50,26 +50,89 @@ public class ProdutoDAO {
 				
 				//substitindo os pontos de interrogacao com os dados
 				
-				Integer id = produto.getId();
+				//Integer id = produto.getId();
 				Integer codigo = produto.getcodigoProduto();
 				String nomeProduto = produto.getnomeProduto();
 				Integer precoUnitario = produto.getcodigoProduto();
 				
-				prepara.setInt(1, id);
-				prepara.setInt(2, codigo);
-				prepara.setString(3, nomeProduto);
-				prepara.setInt(4, precoUnitario);
+				//prepara.setInt(1, id);
+				prepara.setString(1, nomeProduto);
+				prepara.setInt(2, precoUnitario);
+				prepara.setInt(3, codigo);
 				
 				//executando no banco de dados o comando sql
 				prepara.execute();
 				prepara.close();
 
-				System.out.println("Registro cliente -alterado- com sucesso");
+				System.out.println("Produto alterado com sucesso");
 
 			} catch(SQLException e){ 
 				//se comando sql nao estiver correto ira imprimir o erro gerado
 				e.printStackTrace();
 			}
+		}
+		public void deletarProduto (Produto produto){
+			//montando o sql
+			String sql = "DELETE FROM produtos WHERE id=?";
+			
+			try{
+				//preparando PreparedStatment com o SQL
+				//quem prepara eh o connection
+				PreparedStatement prepara = con.prepareStatement(sql);
+				
+				int id = produto.getId();
+				prepara.setInt(1,id); //deletando pelo id que eh inteiro
+				
+				//executando no banco de dados o comando sql
+				prepara.execute();
+				prepara.close();
+
+				System.out.println("Operação realizada com sucesso, produto removido!");
+
+			} catch(SQLException e){ 
+				//se comando sql nao estiver correto ira imprimir o erro gerado
+				e.printStackTrace();
+			}
+		}
+		
+		public Produto procurarPorCodigo(Integer codigo) {
+			//montando sql
+			String sql = "SELECT * FROM produtos WHERE codigo=?";
+			
+			Produto produto = null;
+			
+			try {
+				//preparando PreparedStatment com o SQL
+				//quem prepara eh o connection
+				PreparedStatement prepara = con.prepareStatement(sql);
+				prepara.setInt(1,codigo); //informando pelo id que eh inteiro
+				
+				ResultSet resultado = prepara.executeQuery();
+				
+					if(resultado.next()) {
+						produto = new Produto();
+						
+						String nomeProduto = resultado.getString("nomeProduto");
+						Integer codigoProduto = resultado.getInt("codigo");
+						Integer precoUnitario = resultado.getInt("precoUnitario");
+						
+						
+						produto.setnomeProduto(nomeProduto);
+						produto.setcodigoProduto(codigoProduto);
+						produto.setprecoUnitario(precoUnitario);
+					}				
+				//executando no banco de dados o comando sql
+				prepara.execute();
+				prepara.close();
+
+				System.out.println("Informações sobre o produto:");
+
+			} catch(SQLException e){ 
+				//se comando sql nao estiver correto ira imprimir o erro gerado
+				e.printStackTrace();
+			
+			}
+			return produto;
 		}
 		
 		public List<Produto> listarTodos(){ //procurar todos nao tem parametro
@@ -105,7 +168,7 @@ public class ProdutoDAO {
 				}
 				prepara.close();
 
-				System.out.println("Listando Todos os Registros: ");
+				System.out.println("Listando Todos os Registros de Produtos: ");
 
 			} catch(SQLException e){ 
 				//se comando sql nao estiver correto ira imprimir o erro gerado
