@@ -15,7 +15,7 @@ import br.com.ifrsrestinga.progii.entidades.Produto;
 public class OperacoesDAO {
 	private Connection con = Conexao.getConnection();
 	
-	public void salvarOperacoes(Operacoes operacoes) {
+	public void salvarOperacaoDepositar(Operacoes operacoes) {
 		//sql
 		String sql = "INSERT INTO operacoes (deposito, transferencia, saldo) values (?,?,?)";
 		try {
@@ -28,8 +28,8 @@ public class OperacoesDAO {
 			Integer saldo = operacoes.getSaldo();
 			
 			//prepara.setInt(1, id);
-			prepara.setInt(1, deposito);
-			prepara.setInt(2, transferencia);
+			prepara.setInt(1,deposito);
+			prepara.setInt(2,transferencia);
 			prepara.setInt(3,saldo);
 			
 			prepara.execute();
@@ -39,6 +39,6 @@ public class OperacoesDAO {
 		}catch(SQLException e){ 
 			//se comando sql nao estiver correto ira imprimir o erro gerado
 			e.printStackTrace();
+		}
 	}
-}
 }
