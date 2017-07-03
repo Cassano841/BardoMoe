@@ -1,6 +1,7 @@
 package br.com.ifrsrestinga.progii.entidades;
 
 public class Operacoes {
+	
 	private int deposito;
 	private int transferencia;
 	private int saldo;
@@ -22,5 +23,5 @@ public class Operacoes {
 	}
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
-}
-}
+	}
+}	
