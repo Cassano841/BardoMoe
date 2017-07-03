@@ -5,12 +5,15 @@ import java.util.Scanner;
 
 import br.com.ifrsrestinga.progii.entidades.Cliente;
 import br.com.ifrsrestinga.progii.jdbc.ClienteDAO;
+import br.com.ifrsrestinga.progii.entidades.Menu;
 
 public class TestaClienteDAO{
 	
 	public TestaClienteDAO(){
 		Scanner n = new Scanner(System.in);
 		int op = 0;
+		
+		do {
 		System.out.println("Informe qual ação deseja realizar:");
 		System.out.println("--------------------------");
 		System.out.println("|1 - Adicionar Cliente   |");
@@ -20,6 +23,7 @@ public class TestaClienteDAO{
 		System.out.println("|5 - Procurar Id Cliente |");
 		System.out.println("|6 -  Procurar Por Nome  |");
 		System.out.println("|7 - Procurar Por Conta  |");
+		System.out.println("|8 -   Menu anterior     |");
 		System.out.println("--------------------------");
 		op = n.nextInt();
 		
@@ -45,11 +49,15 @@ public class TestaClienteDAO{
 		case 7:
 			procurarPorConta();
 			break;
+		case 8:
+			System.out.println("Saindo tela cliente.");
+			break;
 		default:
 			System.out.println("Opção inválida!");
 			break;
 		}
-	}
+	}while(op != 8);
+}
 	// MÉTODO SALVAR CLIENTE
 	private static void salvarCliente() {
 		Scanner n = new Scanner(System.in);
@@ -130,24 +138,27 @@ public class TestaClienteDAO{
 	
 	// MÉTODO PROCURA PELO NOME DO CLIENTE
 	private static void procurarPorNome() {
+		Scanner n = new Scanner(System.in);
 		ClienteDAO ClienteDao = new ClienteDAO();
-
-		Cliente retorno_cliente = ClienteDao.procurarPorNome("Teste DAO"); //ALTERAR
+		
+		System.out.println("Digite o nome do cliente para procurar:");
+		Cliente retorno_cliente = ClienteDao.procurarPorNome(n.nextLine());
 		
 		if (retorno_cliente != null)
-			System.out.println("ID:" + retorno_cliente.getId() + " | Nome:" + retorno_cliente.getNome() + " | Login:" + retorno_cliente.getConta() + " | Senha:" + retorno_cliente.getSenha());
+			System.out.println("ID:" + retorno_cliente.getId() + " | Nome:" + retorno_cliente.getNome() + " | Conta:" + retorno_cliente.getConta() + " | Senha:" + retorno_cliente.getSenha());
 		else
 			System.out.println("Nome nao localizado");
 	}
 	
 	// MÉTODO PROCURA PELA CONTA DO CLIENTE
 	private static void procurarPorConta() {
+		Scanner n = new Scanner(System.in);
 		ClienteDAO ClienteDao = new ClienteDAO();
-		//Aqui vai um System out pra poder inserir manualmente a conta.
-		Cliente retorno_cliente = ClienteDao.procurarPorConta(201701);
+		System.out.println("Digite a conta do cliente para procurar:");
+		Cliente retorno_cliente = ClienteDao.procurarPorConta(n.nextInt());
 		
 		if (retorno_cliente != null)
-			System.out.println("ID:" + retorno_cliente.getId() + " | Nome:" + retorno_cliente.getNome() + " | Login:" + retorno_cliente.getConta() + " | Senha:" + retorno_cliente.getSenha());
+			System.out.println("ID:" + retorno_cliente.getId() + " | Nome:" + retorno_cliente.getNome() + " | Conta:" + retorno_cliente.getConta() + " | Senha:" + retorno_cliente.getSenha());
 		else
 			System.out.println("Login nao localizado");
 	}
