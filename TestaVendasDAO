@@ -1,7 +1,9 @@
 package br.com.ifrsrestinga.progii.testes;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.com.ifrsrestinga.progii.entidades.Cliente;
 import br.com.ifrsrestinga.progii.entidades.Vendas;
 import br.com.ifrsrestinga.progii.jdbc.VendasDAO;
 
@@ -18,15 +20,20 @@ public class TestaVendasDAO {
 		public static void cadastrarVenda() {
 			Scanner n = new Scanner(System.in);
 			Vendas venda  = new Vendas();
-
+			Cliente cliente = new Cliente();
+		     ArrayList<Cliente> listaClientes = new ArrayList<>();
+			
+			
 			System.out.println("Digite o Codigo:");
 			venda.setCodVenda(n.nextInt());
 			System.out.println("Digite a data e hora:");
-			venda.setHoraVenda(n.nextGregorianCalendar());
-			
+			//venda.setHoraVenda(n.nextGregorianCalendar());
 			//Criar metodo listar clientes e listar produtos
-			
-			//System.out.println("Digite o Cod do Cliente :"); 
+			System.out.println("Escolha um cliente na lista abaixo para fazer a venda :"); 
+			ArrayList<Cliente> lista = getList();
+			for(int i = 0;i<lista.size();i++){
+			System.out.print(lista.get(i).toString);
+			}
 			//venda.setCodVenda(n.nextInt());
 			//System.out.println("Digite o Codigo:");
 			//venda.setCodVenda(n.nextInt());
@@ -35,5 +42,11 @@ public class TestaVendasDAO {
 			VendasDAO vendasDao = new VendasDAO();
 			vendasDao.cadastrarVenda(venda);
 		}
+
+		private static ArrayList<Cliente> getList() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 			
+
