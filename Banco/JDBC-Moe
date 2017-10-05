@@ -1,0 +1,43 @@
+create database barDoMoe;
+
+use barDoMoe;
+
+create table cliente(
+	id varchar (100),
+    nome varchar (100),
+    cpf varchar (100),
+    email varchar (100),
+    conta varchar(100),
+    senha varchar(100)
+    );
+    
+create table produtos(
+	id int not null,
+    codigo int not null,
+    nomeProduto varchar(100),
+    precoUnitario int not null
+    );
+    
+create table operacoes(
+	deposito int not null,
+    transferencia int not null,
+    saldo int not null
+    );
+    
+create table vendaProdutos(
+	id int not null,
+    venda int not null,
+    codigo int not null, 
+    dataHora datetime,
+    cliente varchar(100),
+    produtos varchar(100),
+	quantitade int not null
+    );
+    
+create table relatorioVendas(
+	produtosVendidos int not null,
+    comprasCliente int not null,
+    clienteMaisGasto varchar(100),
+    clienteMaisOperacoes varchar(100)
+    );
+    
